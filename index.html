@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IP Info</title>
+</head>
+<body style="font-family: Arial; text-align:center; padding:40px;">
+
+  <h2>Your Location Info</h2>
+  <p><strong>IP:</strong> <span id="ip">Loading...</span></p>
+  <p><strong>City:</strong> <span id="city">Loading...</span></p>
+  <p><strong>Region:</strong> <span id="region">Loading...</span></p>
+  <p><strong>Country:</strong> <span id="country">Loading...</span></p>
+
+<script>
+fetch("https://ipapi.co/json/")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("ip").textContent = data.ip;
+    document.getElementById("city").textContent = data.city;
+    document.getElementById("region").textContent = data.region;
+    document.getElementById("country").textContent = data.country_name;
+  })
+  .catch(err => {
+    document.getElementById("ip").textContent = "Unable to load IP info";
+    console.log(err);
+  });
+</script>
+
+</body>
+</html>
